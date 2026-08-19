@@ -358,7 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Backend API Call
     async function getBackendResponse(query, isHindi) {
-        const response = await fetch('http://localhost:3001/chat', {
+        const response = await fetch('https://sih-rag-backend.onrender.com/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
