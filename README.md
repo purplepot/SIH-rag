@@ -12,8 +12,8 @@ RailSahayak is an AI-powered assistant for Indian Railways, leveraging Gemini 2.
 
 ## Project Structure
 - `backend/`: Node.js server with Express, ChromaDB, and Gemini API integration.
-- `frontend/`: (Optional) Vite React frontend implementation.
-- `index.html`, `app.js`, `style.css`: The main vanilla HTML/JS static frontend interface.
+- `frontend/`: The main Vite React frontend application.
+- Root files (`index.html`, `app.js`, `style.css`): An alternative, vanilla HTML/JS static frontend interface.
 
 ## Installation & Setup
 
@@ -57,12 +57,16 @@ cd backend
 npm run dev
 ```
 
-### 5. Start the Frontend
-You can simply open `index.html` in your browser, or serve it using a local server from the root directory:
+### 5. Start the Frontend (React App)
+Open a new terminal window:
 ```bash
-npx http-server . -p 8080
+cd frontend
+npm install
+npm run dev
 ```
-Then navigate to `http://localhost:8080` in your browser.
+The application will run on `http://localhost:5173`. 
+
+*(Alternatively, for a simpler vanilla HTML/JS version, you can open `index.html` in the root folder directly in your browser).*
 
 ## Usage
 - Open the application.
