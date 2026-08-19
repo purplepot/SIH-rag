@@ -32,7 +32,7 @@ export default function App() {
 
   const getBackendResponse = async (query, isHi) => {
     try {
-      const response = await fetch("http://localhost:3001/chat", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:3001"}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
