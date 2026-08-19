@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RailSahayak - AI Assistant</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="lang-en">
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="brand">
+                <div class="logo">🚂</div>
+                <div class="title-container">
+                    <h1 class="title en-text">RailSahayak</h1>
+                    <h1 class="title hi-text">रेलसहायक</h1>
+                    <span class="subtitle en-text">AI Assistant</span>
+                    <span class="subtitle hi-text">एआई सहायक</span>
+                </div>
+            </div>
+            <div class="actions">
+                <button id="lang-toggle" class="lang-btn">
+                    <span class="en-label">हिंदी</span>
+                    <span class="hi-label">English</span>
+                </button>
+                <button id="settings-btn" class="settings-btn" title="Settings">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Chat Area -->
+        <main class="chat-container" id="chat-container">
+            <!-- Messages will be injected here -->
+            <div class="message bot-message welcome-message">
+                <div class="avatar">🚂</div>
+                <div class="message-content">
+                    <p class="en-text">Welcome to RailSahayak! 🚂 I can help you with train booking, PNR status, complaints, temple routes, and more. How can I help you today?</p>
+                    <p class="hi-text">रेलसहायक में आपका स्वागत है! 🚂 मैं ट्रेन बुकिंग, PNR स्थिति, शिकायत, मंदिर मार्ग और बहुत कुछ में आपकी मदद कर सकता हूँ। आज मैं आपकी कैसे मदद कर सकता हूँ?</p>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions" id="quick-actions">
+                <button class="chip" data-en="How to book a ticket?" data-hi="टिकट कैसे बुक करें?">
+                    <span class="en-text">How to book a ticket?</span>
+                    <span class="hi-text">टिकट कैसे बुक करें?</span>
+                </button>
+                <button class="chip" data-en="Check PNR Status" data-hi="PNR स्थिति जांचें">
+                    <span class="en-text">Check PNR Status</span>
+                    <span class="hi-text">PNR स्थिति जांचें</span>
+                </button>
+                <button class="chip" data-en="File a Complaint" data-hi="शिकायत दर्ज करें">
+                    <span class="en-text">File a Complaint</span>
+                    <span class="hi-text">शिकायत दर्ज करें</span>
+                </button>
+                <button class="chip" data-en="Tatkal Booking Tips" data-hi="तत्काल बुकिंग टिप्स">
+                    <span class="en-text">Tatkal Booking Tips</span>
+                    <span class="hi-text">तत्काल बुकिंग टिप्स</span>
+                </button>
+                <button class="chip" data-en="Find Temple Routes" data-hi="मंदिर मार्ग खोजें">
+                    <span class="en-text">Find Temple Routes</span>
+                    <span class="hi-text">मंदिर मार्ग खोजें</span>
+                </button>
+                <button class="chip" data-en="Cancel Ticket" data-hi="टिकट रद्द करें">
+                    <span class="en-text">Cancel Ticket</span>
+                    <span class="hi-text">टिकट रद्द करें</span>
+                </button>
+            </div>
+            
+            <!-- Typing Indicator -->
+            <div class="message bot-message typing-indicator hidden" id="typing-indicator">
+                <div class="avatar">🚂</div>
+                <div class="message-content typing-content">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Input Area -->
+        <footer class="input-container">
+            <form id="chat-form">
+                <input type="text" id="user-input" class="en-placeholder" placeholder="Type your message here..." autocomplete="off">
+                <button type="submit" id="send-btn" disabled>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-key"></i> <span class="en-text">API Settings</span><span class="hi-text">एपीआई सेटिंग्स</span></h2>
+                <button id="close-modal" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="en-text text-sm">Enter your free Google Gemini API key to enable advanced AI responses. Get one from <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a>.</p>
+                <p class="hi-text text-sm">उन्नत एआई प्रतिक्रियाओं को सक्षम करने के लिए अपनी निःशुल्क Google Gemini API कुंजी दर्ज करें। <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a> से प्राप्त करें।</p>
+                
+                <div class="input-group">
+                    <label for="api-key" class="en-text">Gemini API Key</label>
+                    <label for="api-key" class="hi-text">जेमिनी एपीआई कुंजी</label>
+                    <input type="password" id="api-key" placeholder="AIzaSy...">
+                </div>
+                
+                <p id="api-status" class="status-msg hidden"></p>
+                
+                <button id="save-key-btn" class="primary-btn">
+                    <span class="en-text">Save Key</span>
+                    <span class="hi-text">कुंजी सहेजें</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
