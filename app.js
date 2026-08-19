@@ -358,7 +358,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Backend API Call
     async function getBackendResponse(query, isHindi) {
-        const response = await fetch('https://sih-rag-backend.onrender.com/chat', {
+        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const apiUrl = isLocal ? 'http://localhost:3001' : 'https://sih-rag-backend.onrender.com';
+        
+        const response = await fetch(`${apiUrl}/chat`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
